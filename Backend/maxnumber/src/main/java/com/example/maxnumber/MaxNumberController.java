@@ -60,7 +60,11 @@ public class MaxNumberController {
         return numbers;
     }
     @GetMapping("/dynamic-derivative")
-    public String getDynamicDerivative(@RequestParam List<Integer> coefficients) {
+    public String getDynamicDerivative(@RequestParam int num1,
+                                       @RequestParam int num2,
+                                       @RequestParam int num3,
+                                       @RequestParam int num4) {
+        List<Integer> coefficients = Arrays.asList(num1, num2, num3, num4);
         int degree = coefficients.size() - 1;
         StringBuilder derivative = new StringBuilder("f'(x) = ");
 
@@ -87,9 +91,14 @@ public class MaxNumberController {
 
         return derivative.toString();
     }
+
     @GetMapping("/evaluate-dynamic-derivative")
-    public String evaluateDynamicDerivative(@RequestParam List<Integer> coefficients,
+    public String evaluateDynamicDerivative(@RequestParam int num1,
+                                            @RequestParam int num2,
+                                            @RequestParam int num3,
+                                            @RequestParam int num4,
                                             @RequestParam int x) {
+        List<Integer> coefficients = Arrays.asList(num1, num2, num3, num4);
         int degree = coefficients.size() - 1;
         int derivativeValue = 0;
 
@@ -105,6 +114,7 @@ public class MaxNumberController {
 
         return String.format("El valor de la derivada f'(x) en x = %d es: %d", x, derivativeValue);
     }
+
 
 
 }
