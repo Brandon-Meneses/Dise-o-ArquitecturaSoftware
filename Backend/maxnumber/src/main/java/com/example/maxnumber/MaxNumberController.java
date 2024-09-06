@@ -67,30 +67,36 @@ public class MaxNumberController {
         List<Integer> coefficients = Arrays.asList(num1, num2, num3, num4);
         int degree = coefficients.size() - 1;
         StringBuilder derivative = new StringBuilder("f'(x) = ");
+        boolean firstTerm = true; // Para manejar el signo '+' correctamente
 
         // Iterar sobre los coeficientes para calcular la derivada
         for (int i = 0; i < coefficients.size(); i++) {
             int coefficient = coefficients.get(i);
             int currentDegree = degree - i;
 
-            // Si el coeficiente es 0, no agregar a la derivada
-            if (coefficient == 0 || currentDegree == 0) continue;
+            // La derivada del término constante es 0, así que se omite
+            if (currentDegree == 0) continue;
 
             int derivedCoefficient = coefficient * currentDegree;
+
+            if (derivedCoefficient == 0) continue;
+
+            if (!firstTerm) {
+                derivative.append(" + ");
+            }
 
             if (currentDegree > 1) {
                 derivative.append(derivedCoefficient).append("x^").append(currentDegree - 1);
             } else {
-                derivative.append(derivedCoefficient).append("x");
+                derivative.append(derivedCoefficient);
             }
 
-            if (i < coefficients.size() - 2) {
-                derivative.append(" + ");
-            }
+            firstTerm = false;
         }
 
         return derivative.toString();
     }
+
 
     @GetMapping("/evaluate-dynamic-derivative")
     public String evaluateDynamicDerivative(@RequestParam int num1,
