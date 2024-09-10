@@ -12,4 +12,7 @@ import { PolynomialCalculatorComponent } from './polynomial-calculator/polynomia
 })
 export class AppComponent {
   title = 'maxnumber';
+  log(tabName: string): void {
+    console.log(`Navigating to: ${tabName}`);
+  }
 }

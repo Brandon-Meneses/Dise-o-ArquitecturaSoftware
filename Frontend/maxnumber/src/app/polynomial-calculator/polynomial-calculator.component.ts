@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [HttpClientModule, FormsModule, CommonModule] // Asegúrate de incluir HttpClientModule y FormsModule
 })
-export class PolynomialCalculatorComponent {
+export class PolynomialCalculatorComponent implements OnInit {
   coefficients: number[] = [];
   xValue: number = 0;
   result: string = '';
@@ -25,6 +25,10 @@ export class PolynomialCalculatorComponent {
   num4: number = 0;
 
   constructor(private http: HttpClient) { }
+
+  ngOnInit(): void {
+    console.log('PolynomialCalculatorComponent loaded');
+  }
 
   formFunction(): string {
     const terms = [];

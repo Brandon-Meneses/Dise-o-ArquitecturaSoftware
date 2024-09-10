@@ -1,1 +1,6 @@
-<app-polynomial-calculator></app-polynomial-calculator>
+<div class="tabs">
+  <a routerLink="/polynomial-calculator" routerLinkActive="tab-active" class="tab tab-bordered" (click)="log('Polynomial Calculator')">Polynomial Calculator</a>
+  <a routerLink="/alumnos" routerLinkActive="tab-active" class="tab tab-bordered" (click)="log('Alumnos')">Alumnos</a>
+</div>
+
+<router-outlet></router-outlet>

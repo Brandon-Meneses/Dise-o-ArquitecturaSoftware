@@ -1,0 +1,40 @@
+<div class="container mx-auto p-6">
+    <h2 class="text-2xl font-bold mb-6">Gestión de Alumnos</h2>
+  
+    <!-- Formulario para agregar/editar alumno -->
+    <div class="mb-4">
+      <h3 class="text-xl font-semibold mb-2">{{ alumnoEditado ? 'Editar Alumno' : 'Agregar Alumno' }}</h3>
+      <input [(ngModel)]="nuevoAlumno.nombre" placeholder="Nombre" class="input input-bordered mb-2 w-full" />
+      <input [(ngModel)]="nuevoAlumno.apellido" placeholder="Apellido" class="input input-bordered mb-2 w-full" />
+      <input [(ngModel)]="nuevoAlumno.edad" type="number" placeholder="Edad" class="input input-bordered mb-2 w-full" />
+      <input [(ngModel)]="nuevoAlumno.email" placeholder="Email" class="input input-bordered mb-2 w-full" />
+      <button (click)="crearAlumno()" class="btn btn-primary w-full">{{ alumnoEditado ? 'Guardar Cambios' : 'Agregar Alumno' }}</button>
+    </div>
+  
+    <!-- Tabla para listar alumnos -->
+    <h3 class="text-xl font-semibold mb-2">Lista de Alumnos</h3>
+    <table class="table-auto w-full">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Edad</th>
+          <th>Email</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let alumno of alumnos">
+          <td>{{ alumno.nombre }}</td>
+          <td>{{ alumno.apellido }}</td>
+          <td>{{ alumno.edad }}</td>
+          <td>{{ alumno.email }}</td>
+          <td>
+            <button (click)="editarAlumno(alumno)" class="btn btn-warning">Editar</button>
+            <button (click)="eliminarAlumno(alumno.id)" class="btn btn-error">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
