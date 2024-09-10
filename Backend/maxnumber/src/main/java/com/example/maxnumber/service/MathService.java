@@ -1,4 +1,4 @@
-package com.example.maxnumber;
+package com.example.maxnumber.service;
 
 import org.springframework.stereotype.Service;
 
