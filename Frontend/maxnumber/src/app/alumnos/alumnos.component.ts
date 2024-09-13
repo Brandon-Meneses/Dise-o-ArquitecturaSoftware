@@ -20,10 +20,8 @@ export class AlumnosComponent implements OnInit {
   constructor(private alumnosService: AlumnosService) { }
 
   ngOnInit(): void {
-    console.log('AlumnosComponent loaded');
     this.obtenerAlumnos();
   }
-
 
   obtenerAlumnos() {
     this.alumnosService.getAlumnos().subscribe(data => {
@@ -33,23 +31,24 @@ export class AlumnosComponent implements OnInit {
 
   crearAlumno() {
     if (this.alumnoEditado) {
-      // Si hay un alumno siendo editado, entonces actualizar
+      // Actualizar alumno existente
       this.alumnosService.updateAlumno(this.alumnoEditado.id, this.nuevoAlumno).subscribe(() => {
         this.obtenerAlumnos();
         this.alumnoEditado = null;
-        this.nuevoAlumno = { nombre: '', apellido: '', edad: 0, email: '' };
+        this.reiniciarFormulario();  // Reiniciar el formulario después de editar
       });
     } else {
-      // Si no hay alumno siendo editado, entonces crear
+      // Crear nuevo alumno
       this.alumnosService.createAlumno(this.nuevoAlumno).subscribe(() => {
         this.obtenerAlumnos();
-        this.nuevoAlumno = { nombre: '', apellido: '', edad: 0, email: '' };
+        this.reiniciarFormulario();  // Reiniciar el formulario después de agregar
       });
     }
   }
+
   editarAlumno(alumno: any) {
     this.alumnoEditado = alumno;
-    this.nuevoAlumno = { ...alumno };  // Clonamos los datos del alumno en el formulario
+    this.nuevoAlumno = { ...alumno };  // Clonar los datos del alumno en el formulario
   }
 
   eliminarAlumno(id: number) {
@@ -57,4 +56,11 @@ export class AlumnosComponent implements OnInit {
       this.obtenerAlumnos();
     });
   }
+
+  reiniciarFormulario() {
+    // Reiniciar el formulario a su estado inicial
+    this.nuevoAlumno = { nombre: '', apellido: '', edad: 0, email: '' };
+    this.alumnoEditado = null;
+  }
 }
+

@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { PolynomialCalculatorComponent } from './polynomial-calculator/polynomial-calculator.component';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,PolynomialCalculatorComponent],
+  imports: [RouterOutlet,PolynomialCalculatorComponent, RouterModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

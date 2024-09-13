@@ -3,7 +3,7 @@ import { PolynomialCalculatorComponent } from './polynomial-calculator/polynomia
 import { AlumnosComponent } from './alumnos/alumnos.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'polynomial-calculator', pathMatch: 'full' },
-    { path: 'polynomial-calculator', component: PolynomialCalculatorComponent },
-    { path: 'alumnos', component: AlumnosComponent }
-  ];
+  { path: '', redirectTo: 'polynomial-calculator', pathMatch: 'full' },
+  { path: 'polynomial-calculator', component: PolynomialCalculatorComponent },
+  { path: 'alumnos', component: AlumnosComponent }
+];

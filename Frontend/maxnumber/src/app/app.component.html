@@ -1,6 +1,23 @@
-<div class="tabs">
-  <a routerLink="/polynomial-calculator" routerLinkActive="tab-active" class="tab tab-bordered" (click)="log('Polynomial Calculator')">Polynomial Calculator</a>
-  <a routerLink="/alumnos" routerLinkActive="tab-active" class="tab tab-bordered" (click)="log('Alumnos')">Alumnos</a>
+<div class="navbar bg-base-300 px-4">
+  <div class="flex-1">
+    <a class="btn btn-ghost normal-case text-xl">Diseño y Arquitectura de Software</a>
+  </div>
+  <div class="flex-none">
+    <div class="tabs">
+      <a routerLink="/polynomial-calculator" 
+         routerLinkActive="tab-active" 
+         class="tab tab-bordered"
+         (click)="log('Polynomial Calculator')">
+        Calculadora Polinómica
+      </a>
+      <a routerLink="/alumnos" 
+         routerLinkActive="tab-active" 
+         class="tab tab-bordered"
+         (click)="log('Alumnos')">
+        Alumnos
+      </a>
+    </div>
+  </div>
 </div>
 
 <router-outlet></router-outlet>

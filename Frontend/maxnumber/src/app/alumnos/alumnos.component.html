@@ -1,19 +1,36 @@
 <div class="container mx-auto p-6">
-    <h2 class="text-2xl font-bold mb-6">Gestión de Alumnos</h2>
-  
-    <!-- Formulario para agregar/editar alumno -->
-    <div class="mb-4">
-      <h3 class="text-xl font-semibold mb-2">{{ alumnoEditado ? 'Editar Alumno' : 'Agregar Alumno' }}</h3>
-      <input [(ngModel)]="nuevoAlumno.nombre" placeholder="Nombre" class="input input-bordered mb-2 w-full" />
-      <input [(ngModel)]="nuevoAlumno.apellido" placeholder="Apellido" class="input input-bordered mb-2 w-full" />
-      <input [(ngModel)]="nuevoAlumno.edad" type="number" placeholder="Edad" class="input input-bordered mb-2 w-full" />
-      <input [(ngModel)]="nuevoAlumno.email" placeholder="Email" class="input input-bordered mb-2 w-full" />
-      <button (click)="crearAlumno()" class="btn btn-primary w-full">{{ alumnoEditado ? 'Guardar Cambios' : 'Agregar Alumno' }}</button>
+  <h2 class="text-2xl font-bold mb-6 text-center">Gestión de Alumnos</h2>
+
+  <!-- Formulario para agregar/editar alumno -->
+  <div class="mb-4 max-w-lg mx-auto bg-base-200 p-4 rounded-lg shadow-md">
+    <h3 class="text-xl font-semibold mb-4">{{ alumnoEditado ? 'Editar Alumno' : 'Agregar Alumno' }}</h3>
+
+    <input [(ngModel)]="nuevoAlumno.nombre" placeholder="Nombre" class="input input-bordered mb-2 w-full" />
+    <input [(ngModel)]="nuevoAlumno.apellido" placeholder="Apellido" class="input input-bordered mb-2 w-full" />
+    <input [(ngModel)]="nuevoAlumno.edad" type="number" placeholder="Edad" class="input input-bordered mb-2 w-full" />
+    <input [(ngModel)]="nuevoAlumno.email" placeholder="Email" class="input input-bordered mb-4 w-full" />
+
+    <!-- Botones: Agregar/Guardar Cambios + Nuevo -->
+    <div [ngClass]="alumnoEditado ? 'flex justify-between' : 'flex justify-center'">
+      <button (click)="crearAlumno()" 
+              class="btn btn-primary"
+              [ngClass]="alumnoEditado ? 'w-3/4' : 'w-full'">
+        {{ alumnoEditado ? 'Guardar Cambios' : 'Agregar Alumno' }}
+      </button>
+      
+      <!-- Botón Nuevo solo visible cuando estamos editando un alumno -->
+      <button *ngIf="alumnoEditado" 
+              (click)="reiniciarFormulario()" 
+              class="btn btn-accent w-1/4 ml-2">
+        Nuevo
+      </button>
     </div>
-  
-    <!-- Tabla para listar alumnos -->
-    <h3 class="text-xl font-semibold mb-2">Lista de Alumnos</h3>
-    <table class="table-auto w-full">
+  </div>
+
+  <!-- Tabla para listar alumnos -->
+  <h3 class="text-xl font-semibold mb-2">Lista de Alumnos</h3>
+  <div class="overflow-x-auto">
+    <table class="table table-zebra w-full">
       <thead>
         <tr>
           <th>Nombre</th>
@@ -30,11 +47,11 @@
           <td>{{ alumno.edad }}</td>
           <td>{{ alumno.email }}</td>
           <td>
-            <button (click)="editarAlumno(alumno)" class="btn btn-warning">Editar</button>
-            <button (click)="eliminarAlumno(alumno.id)" class="btn btn-error">Eliminar</button>
+            <button (click)="editarAlumno(alumno)" class="btn btn-warning btn-sm">Editar</button>
+            <button (click)="eliminarAlumno(alumno.id)" class="btn btn-error btn-sm">Eliminar</button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
-  
+</div>
